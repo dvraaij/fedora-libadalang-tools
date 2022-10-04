@@ -1,0 +1,12 @@
+--- a/src/lal_tools.gpr
++++ b/src/lal_tools.gpr
+@@ -9,7 +9,8 @@
+    for Object_Dir use "../obj/" & LAL_Tools_Common.Superproject & "/lib";
+    for Library_Kind use Library_Type;
+    for Library_Dir use "../lib";
+-   for Library_Name use "lal_tools";
++   for Library_Name use "adalang_tools";
++   for Library_Version use "libadalang_tools.so." & external ("VERSION");
+ 
+    for Excluded_Source_Files use
+      ("pp-main.adb",
