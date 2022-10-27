@@ -4,7 +4,7 @@
 # Upstream source information.
 %global upstream_owner    AdaCore
 %global upstream_name     libadalang-tools
-%global upstream_version  22.0.0
+%global upstream_version  23.0.0
 %global upstream_gittag   v%{upstream_version}
 
 Name:           libadalang-tools
@@ -24,6 +24,7 @@ BuildRequires:  gcc-gnat gprbuild make sed
 # A fedora-gnat-project-common that contains GPRbuild_flags is needed.
 BuildRequires:  fedora-gnat-project-common >= 3.17
 BuildRequires:  libadalang-devel
+BuildRequires:  templates_parser-devel
 %if %{with check}
 BuildRequires:  aunit-devel
 BuildRequires:  python3-devel
@@ -165,5 +166,8 @@ bin/utils-var_length_ints-test
 ###############
 
 %changelog
+* Sun Oct 30 2022 Dennis van Raaij <dvraaij@fedoraproject.org> - 23.0.0-1
+- Updated to v23.0.0.
+
 * Sun Sep 04 2022 Dennis van Raaij <dvraaij@fedoraproject.org> - 22.0.0-1
 - New package.
