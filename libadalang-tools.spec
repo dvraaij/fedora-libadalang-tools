@@ -4,7 +4,7 @@
 # Upstream source information.
 %global upstream_owner    AdaCore
 %global upstream_name     libadalang-tools
-%global upstream_version  22.0.0
+%global upstream_version  23.0.0
 %global upstream_gittag   v%{upstream_version}
 
 Name:           libadalang-tools
@@ -23,6 +23,7 @@ Patch:          %{name}-rename-lib-and-set-soname.patch
 BuildRequires:  gcc-gnat gprbuild make sed
 BuildRequires:  fedora-gnat-project-common
 BuildRequires:  libadalang-devel
+BuildRequires:  templates_parser-devel
 %if %with_check
 BuildRequires:  aunit-devel
 BuildRequires:  python3-devel
@@ -166,5 +167,8 @@ bin/utils-var_length_ints-test
 ###############
 
 %changelog
+* Sun Oct 30 2022 Dennis van Raaij <dvraaij@fedoraproject.org> - 23.0.0-1
+- Updated to v23.0.0, using the archive available on GitHub.
+
 * Sun Sep 04 2022 Dennis van Raaij <dvraaij@fedoraproject.org> - 22.0.0-1
 - New package.
