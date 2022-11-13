@@ -71,7 +71,7 @@ sed --in-place \
 
 # Build the library.
 gprbuild %{GPRbuild_optflags} \
-         -XBUILD_MODE=prod -XLIBRARY_TYPE=relocatable \
+         -XBUILD_MODE=dev -XLIBRARY_TYPE=relocatable \
          -XVERSION=%{version} \
          src/lal_tools.gpr \
 
@@ -81,7 +81,7 @@ gprbuild %{GPRbuild_optflags} \
 
 # Build the tools.
 gprbuild %{GPRbuild_optflags} %{GPRbuild_optflags_pie} \
-         -XBUILD_MODE=prod -XLIBRARY_TYPE=relocatable \
+         -XBUILD_MODE=dev -XLIBRARY_TYPE=relocatable \
          -XVERSION=%{version} -XLALTOOLS_SET=no-wip \
          src/build.gpr
 
@@ -95,14 +95,14 @@ gprbuild %{GPRbuild_optflags} %{GPRbuild_optflags_pie} \
 # Install the library.
 gprinstall --prefix=%{buildroot}%{_prefix} --no-manifest --no-build-var \
            %{GPRinstall_flags} --mode=usage \
-           -XBUILD_MODE=prod -XLIBRARY_TYPE=relocatable \
+           -XBUILD_MODE=dev -XLIBRARY_TYPE=relocatable \
            -XVERSION=%{version} -XLALTOOLS_SET=no-wip \
            src/lal_tools.gpr
 
 # Install the tools.
 gprinstall --prefix=%{buildroot}%{_prefix} --no-manifest --no-build-var \
            %{GPRinstall_flags} --mode=usage \
-           -XBUILD_MODE=prod -XLIBRARY_TYPE=relocatable \
+           -XBUILD_MODE=dev -XLIBRARY_TYPE=relocatable \
            -XVERSION=%{version} -XLALTOOLS_SET=no-wip \
            src/build.gpr
 
@@ -131,7 +131,7 @@ export LD_LIBRARY_PATH=%{buildroot}%{_libdir}:$LD_LIBRARY_PATH
 # Build all projects that are part of the testsuite.
 for prj in $(find ./testsuite/ada_drivers -name "*.gpr" -type f); do
     gprbuild %{GPRbuild_optflags} %{GPRbuild_optflags_pie} \
-             -XBUILD_MODE=prod -XLIBRARY_TYPE=relocatable \
+             -XBUILD_MODE=dev -XLIBRARY_TYPE=relocatable \
              -XVERSION=%{version} -XLALTOOLS_SET=no-wip \
              $prj
 done
