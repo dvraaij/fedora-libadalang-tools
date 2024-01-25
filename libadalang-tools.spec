@@ -4,7 +4,7 @@
 # Upstream source information.
 %global upstream_owner    AdaCore
 %global upstream_name     libadalang-tools
-%global upstream_version  23.0.0
+%global upstream_version  24.0.0
 %global upstream_gittag   v%{upstream_version}
 
 Name:           libadalang-tools
@@ -24,6 +24,8 @@ BuildRequires:  gcc-gnat gprbuild make sed
 # A fedora-gnat-project-common that contains GPRbuild_flags is needed.
 BuildRequires:  fedora-gnat-project-common >= 3.17
 BuildRequires:  libadalang-devel
+BuildRequires:  libgpr2-devel
+BuildRequires:  libvss-devel
 BuildRequires:  templates_parser-devel
 %if %{with check}
 BuildRequires:  aunit-devel
@@ -105,6 +107,9 @@ gprinstall %{GPRinstall_flags} --no-build-var --mode=usage \
            -XVERSION=%{version} -XLALTOOLS_SET=no-wip \
            -P src/build.gpr
 
+# Install the TGen templates.
+make install-tgen DESTDIR=%{buildroot}%{_prefix}
+
 # Remove the library symlink, there is no devel package.
 rm %{buildroot}%{_libdir}/libadalang_tools.so
 
@@ -159,6 +164,7 @@ bin/utils-var_length_ints-test
 %{_bindir}/gnatmetric
 %{_bindir}/gnatstub
 %{_bindir}/gnattest
+%{_datadir}/tgen
 
 
 ###############
@@ -166,6 +172,9 @@ bin/utils-var_length_ints-test
 ###############
 
 %changelog
+* Sun Jan 28 2024 Dennis van Raaij <dvraaij@fedoraproject.org> - 24.0.0-1
+- Updated to v24.0.0.
+
 * Sun Oct 30 2022 Dennis van Raaij <dvraaij@fedoraproject.org> - 23.0.0-1
 - Updated to v23.0.0.
 
