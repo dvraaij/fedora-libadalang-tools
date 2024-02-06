@@ -37,6 +37,9 @@ BuildRequires:  python3-e3-testsuite
 # Build only on architectures where GPRbuild is available.
 ExclusiveArch:  %{GPRbuild_arches}
 
+# LibVSS fails to build on s390x.
+ExcludeArch:    s390x
+
 %description
 Tools that are based on libadalang, including a pretty-printer (gnatpp), a
 code metric analyzer (gnatmetric), a body stub generator (gnatstub) and a
